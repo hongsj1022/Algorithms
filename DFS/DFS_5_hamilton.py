@@ -12,15 +12,16 @@ def DFS(cnt, city, sum):
 	global sol
 	if sol <= sum: return
 	if cnt == N:
-	if matrix[city][1] and sol > sum + matrix[city][1]:
-		sol = sum + matrix[city][1]
+		if matrix[city][1]:
+			if sol > sum + matrix[city][1]:
+				sol = sum + matrix[city][1]
 		return
   
 	for n in range(2, N+1):
 		if chk[n]: continue
-		if matrix[city][n] == 0: continue
+		if not matrix[city][n]: continue
 		chk[n] = 1
-		DFS(cnt+1, n, sum + matrix[city][n])
+		DFS(cnt + 1, n, sum + matrix[city][n])
 		chk[n] = 0
   
 N, matrix = Input_Data()
